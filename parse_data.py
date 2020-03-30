@@ -33,7 +33,7 @@ for i in raw:
         data[dates.index(i[0])][states.index(i[1])] = i[3]
 
 
-with open('organized_data.csv', mode='w') as output_file:
-    output_writer = csv.writer(output_file, delimiter=',')
+with open('organized_data3.csv', mode='w') as output_file:
+    output_writer = csv.writer(output_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for i in range(len(data)):
         output_writer.writerow(data[i])
