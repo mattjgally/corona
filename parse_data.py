@@ -4,7 +4,7 @@ dates = []
 
 raw = []
 
-with open('us-states.csv', newline='') as csvfile:
+with open('../covid-19-data/us-states.csv', newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=',')
     for row in spamreader:
         raw.append(row)
@@ -24,7 +24,7 @@ for i in range(len(states)):
     for j in range(len(dates)):
 
         if i == 0:
-            data[j][i] = dates[j]
+            data[j][i] = j
 
 data[0][:] = states
 
