@@ -47,6 +47,7 @@ d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/organized_dat
   var stackedData = d3.stack()
     .keys(keys)
     (data)
+  console.log(stackedData)
 
 
 
@@ -113,6 +114,7 @@ d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/organized_dat
     .x(function(d) { return x(d.data.year); })
     .y0(function(d) { return y(d[0]); })
     .y1(function(d) { return y(d[1]); })
+  console.log(area)
 
   // Show the areas
   areaChart
