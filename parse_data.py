@@ -26,14 +26,17 @@ for i in range(len(states)):
         if i == 0:
             data[j][i] = j
 
+
 data[0][:] = states
 
 for i in raw:
     if i[0] in dates:
         data[dates.index(i[0])][states.index(i[1])] = i[3]
 
+for i in range(len(data[0])):
+    data[0][i] = data[0][i].replace(" ","")
 
-with open('organized_data3.csv', mode='w') as output_file:
-    output_writer = csv.writer(output_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+with open('organized_data5.csv', mode='w') as output_file:
+    output_writer = csv.writer(output_file, delimiter=',')
     for i in range(len(data)):
         output_writer.writerow(data[i])
