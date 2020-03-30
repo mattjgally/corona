@@ -55,7 +55,7 @@ d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/example_data.
 
   // Add X axis
   var x = d3.scaleLinear()
-    .domain(d3.extent(data, function(d) { return d.date; }))
+    .domain(d3.extent(data, function(d) { return d.year; }))
     .range([ 0, width ]);
   var xAxis = svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -66,7 +66,7 @@ d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/example_data.
       .attr("text-anchor", "end")
       .attr("x", width)
       .attr("y", height+40 )
-      .text("Time (date)");
+      .text("Time (year)");
 
   // Add Y axis label:
   svg.append("text")
@@ -109,7 +109,7 @@ d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/example_data.
 
   // Area generator
   var area = d3.area()
-    .x(function(d) { return x(d.data.date); })
+    .x(function(d) { return x(d.data.year); })
     .y0(function(d) { return y(d[0]); })
     .y1(function(d) { return y(d[1]); })
 
@@ -140,7 +140,7 @@ d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/example_data.
     // If no selection, back to initial coordinate. Otherwise, update X axis domain
     if(!extent){
       if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
-      x.domain(d3.extent(data, function(d) { return d.date; }))
+      x.domain(d3.extent(data, function(d) { return d.year; }))
     }else{
       x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
       areaChart.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
