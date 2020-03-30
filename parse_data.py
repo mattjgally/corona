@@ -38,7 +38,7 @@ for i in range(len(data[0])):
 
 data[0][0] = 'year'
 
-with open('organized_data5.csv', mode='w') as output_file:
+with open('organized_data6.csv', mode='w') as output_file:
     output_writer = csv.writer(output_file, delimiter=',')
     for i in range(len(data)):
         output_writer.writerow(data[i])
