@@ -16,8 +16,8 @@
 
 // set the dimensions and margins of the graph
 var margin = {top: 60, right: 230, bottom: 50, left: 50},
-    width = 1660 - margin.left - margin.right,
-    height = 1600 - margin.top - margin.bottom;
+    width = 1000 - margin.left - margin.right,
+    height = 950 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -189,12 +189,12 @@ d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/organized_dat
     //////////
 
     // Add one dot in the legend for each name.
-    var size = 20
+    var size = 10
     svg.selectAll("myrect")
       .data(keys)
       .enter()
       .append("rect")
-        .attr("x", 1400)
+        .attr("x", 800)
         .attr("y", function(d,i){ return 10 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
         .attr("width", size)
         .attr("height", size)
@@ -207,7 +207,7 @@ d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/organized_dat
       .data(keys)
       .enter()
       .append("text")
-        .attr("x", 1400 + size*1.2)
+        .attr("x", 800 + size*1.2)
         .attr("y", function(d,i){ return 10 + i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
         .style("fill", function(d){ return color(d)})
         .text(function(d){ return d})
