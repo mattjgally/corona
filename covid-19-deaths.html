@@ -4,7 +4,7 @@
 
 <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html">Data from the NYT</a>
 <br>
-<a href="https://covid-19-mjg.s3.amazonaws.com/covid-19-deaths.html">Covid Deaths</a>
+<a href="https://covid-19-mjg.s3.amazonaws.com/covid-19.html">Covid Cases</a>
 
 <!-- Load d3.js & color scale-->
 <script src="https://d3js.org/d3.v4.js"></script>
@@ -31,7 +31,7 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/organized_data6.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/organized_deaths.csv", function(data) {
 //d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/example_data.csv", function(data) {
 
   //////////
@@ -81,7 +81,7 @@ d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/organized_dat
       .attr("text-anchor", "end")
       .attr("x", 0)
       .attr("y", -20 )
-      .text("Covid Cases in the USA")
+      .text("Covid Deaths in the USA")
       .attr("text-anchor", "start")
 
   // Add Y axis
