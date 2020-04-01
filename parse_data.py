@@ -1,6 +1,7 @@
 import csv
 states = []
 dates = []
+deaths = []
 
 raw = []
 
@@ -20,25 +21,38 @@ with open('../covid-19-data/us-states.csv', newline='') as csvfile:
 data = [[ 0 for a in range(len(states))]
             for b in range(len(dates))]
 
+deaths = [[ 0 for a in range(len(states))]
+            for b in range(len(dates))]
+
 for i in range(len(states)):
     for j in range(len(dates)):
 
         if i == 0:
             data[j][i] = j
+            deaths[j][i] = j
 
 
 data[0][:] = states
+deaths[0][:] = states
 
 for i in raw:
     if i[0] in dates:
         data[dates.index(i[0])][states.index(i[1])] = i[3]
+        deaths[dates.index(i[0])][states.index(i[1])] = i[4]
 
 for i in range(len(data[0])):
     data[0][i] = data[0][i].replace(" ","")
+    deaths[0][i] = deaths[0][i].replace(" ","")
 
 data[0][0] = 'year'
+deaths[0][0] = 'year'
 
 with open('organized_data6.csv', mode='w') as output_file:
     output_writer = csv.writer(output_file, delimiter=',')
     for i in range(len(data)):
         output_writer.writerow(data[i])
+
+with open('organized_deaths.csv', mode='w') as output_file:
+    output_writer = csv.writer(output_file, delimiter=',')
+    for i in range(len(deaths)):
+        output_writer.writerow(deaths[i])
