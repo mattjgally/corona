@@ -46,10 +46,10 @@ new_deaths[0][:] = states
 
 j = 0
 for i in raw:
-    if j > 0:
+    if j > 1:
         if i[0] in dates:
             x = dates.index(i[0])
-            prev = x
+            prev = x - 1
             y = states.index(i[1])
             data[x][y] = i[3]
             deaths[x][y] = i[4]
@@ -64,7 +64,7 @@ for i in raw:
             deaths[x][y] = i[4]
             new_cases[x][y] = i[3]
             new_deaths[x][y] = i[4]
-    j = 1
+    j = j + 1
 
 data[0][:] = states
 deaths[0][:] = states
