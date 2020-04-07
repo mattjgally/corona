@@ -30,6 +30,12 @@ new_cases = [[ 0 for a in range(len(states))]
 new_deaths = [[ 0 for a in range(len(states))]
             for b in range(len(dates))]
 
+smooth_new_cases = [[ 0 for a in range(len(states))]
+            for b in range(len(dates))]
+
+smooth_new_deaths = [[ 0 for a in range(len(states))]
+            for b in range(len(dates))]
+
 for i in range(len(states)):
     for j in range(len(dates)):
         if i == 0:
@@ -37,12 +43,18 @@ for i in range(len(states)):
             deaths[j][i] = j
             new_cases[j][i] = j
             new_deaths[j][i] = j
+            smooth_new_cases[j][i] = j
+            smooth_new_deaths[j][i] = j
 
 
 data[0][:] = states
 deaths[0][:] = states
 new_cases[0][:] = states
 new_deaths[0][:] = states
+smooth_new_cases[0][:] = states
+smooth_new_deaths[0][:] = states
+
+smooth_range = 5
 
 j = 0
 for i in raw:
@@ -56,7 +68,9 @@ for i in raw:
 
             new_cases[x][y] = int(i[3]) - int(data[prev][y])
             new_deaths[x][y] = int(i[4]) - int(deaths[prev][y])
-            print(new_cases[x][y],int(new_cases[prev][y]))
+            if j > (smooth_range + 1):
+                smooth_new_cases[x][y] = sum([int(new_cases[k][y]) for k in range (x-smooth_range + 1,x + 1)])/smooth_range
+                smooth_new_deaths[x][y] = sum([int(new_deaths[k][y]) for k in range (x-smooth_range + 1,x + 1)])/smooth_range
     else:
         if i[0] in dates:
             x = dates.index(i[0])
@@ -72,16 +86,22 @@ data[0][:] = states
 deaths[0][:] = states
 new_cases[0][:] = states
 new_deaths[0][:] = states
+smooth_new_cases[0][:] = states
+smooth_new_deaths[0][:] = states
 data[0][0] = 'year'
 deaths[0][0] = 'year'
 new_cases[0][0] = 'year'
 new_deaths[0][0] = 'year'
+smooth_new_cases[0][0] = 'year'
+smooth_new_deaths[0][0] = 'year'
 
 for i in range(len(data[0])):
     data[0][i] = data[0][i].replace(" ","")
     deaths[0][i] = deaths[0][i].replace(" ","")
     new_cases[0][i] = new_cases[0][i].replace(" ","")
     new_deaths[0][i] = new_deaths[0][i].replace(" ","")
+    smooth_new_cases[0][i] = smooth_new_cases[0][i].replace(" ","")
+    smooth_new_deaths[0][i] = smooth_new_deaths[0][i].replace(" ","")
 
 
 with open('organized_data6.csv', mode='w') as output_file:
@@ -103,3 +123,13 @@ with open('new_deaths.csv', mode='w') as output_file:
     output_writer = csv.writer(output_file, delimiter=',')
     for i in range(len(new_deaths)):
         output_writer.writerow(new_deaths[i])
+
+with open('smooth_new_cases.csv', mode='w') as output_file:
+    output_writer = csv.writer(output_file, delimiter=',')
+    for i in range(len(smooth_new_cases)):
+        output_writer.writerow(smooth_new_cases[i])
+
+with open('smooth_new_deaths.csv', mode='w') as output_file:
+    output_writer = csv.writer(output_file, delimiter=',')
+    for i in range(len(smooth_new_deaths)):
+        output_writer.writerow(smooth_new_deaths[i])

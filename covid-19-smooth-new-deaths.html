@@ -15,6 +15,7 @@
 <a href="https://covid-19-mjg.s3.amazonaws.com/covid-19-new-deaths.html">Daily Covid Deaths</a>
 <br>
 <a href="https://covid-19-mjg.s3.amazonaws.com/covid-19-smooth-new-deaths.html">5 Day Smoothed Daily Covid Deaths</a>
+
 <!-- Load d3.js & color scale-->
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
@@ -40,7 +41,7 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/organized_deaths.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/smooth_new_deaths.csv", function(data) {
 //d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/example_data.csv", function(data) {
 
   //////////
@@ -90,7 +91,7 @@ d3.csv("https://raw.githubusercontent.com/mattjgally/corona/master/organized_dea
       .attr("text-anchor", "end")
       .attr("x", 0)
       .attr("y", -20 )
-      .text("Covid Deaths in the USA")
+      .text("5 Day average of new deaths in the USA")
       .attr("text-anchor", "start")
 
   // Add Y axis
