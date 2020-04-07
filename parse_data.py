@@ -53,8 +53,10 @@ for i in raw:
             y = states.index(i[1])
             data[x][y] = i[3]
             deaths[x][y] = i[4]
-            new_cases[x][y] = int(i[3]) - int(new_cases[prev][y])
-            new_deaths[x][y] = int(i[4]) - int(new_deaths[prev][y])
+
+            new_cases[x][y] = int(i[3]) - int(data[prev][y])
+            new_deaths[x][y] = int(i[4]) - int(deaths[prev][y])
+            print(new_cases[x][y],int(new_cases[prev][y]))
     else:
         if i[0] in dates:
             x = dates.index(i[0])
