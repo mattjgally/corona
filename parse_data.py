@@ -5,16 +5,18 @@ dates = []
 
 raw = []
 
+nothing = 0
+
 with open('../covid-19-data/us-states.csv', newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=',')
     for row in spamreader:
         raw.append(row)
         if row[1] in states:
-            print(states.index(row[1]))
+            nothing  = nothing + 1
         else:
             states.append(row[1])
         if row[0] in dates:
-            print(dates.index(row[0]))
+            nothing  = nothing + 1
         else:
             dates.append(row[0])
 
