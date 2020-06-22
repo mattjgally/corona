@@ -56,7 +56,7 @@ new_deaths[0][:] = states
 smooth_new_cases[0][:] = states
 smooth_new_deaths[0][:] = states
 
-smooth_range = 5
+smooth_range = 7
 
 j = 0
 for i in raw:
@@ -70,7 +70,12 @@ for i in raw:
 
             new_cases[x][y] = int(i[3]) - int(data[prev][y])
             new_deaths[x][y] = int(i[4]) - int(deaths[prev][y])
-            if j > (smooth_range + 1):
+            #print(dates)
+            #print(j, (x-smooth_range + 1), y, i, new_cases[x][y], new_cases[x][:])
+            # 1 5 ['2020-01-25', 'Illinois', '17', '1', '0'] 7 0
+            if ((j > (smooth_range + 1)) and (x >= smooth_range)):
+                print('going in')
+
                 smooth_new_cases[x][y] = sum([int(new_cases[k][y]) for k in range (x-smooth_range + 1,x + 1)])/smooth_range
                 smooth_new_deaths[x][y] = sum([int(new_deaths[k][y]) for k in range (x-smooth_range + 1,x + 1)])/smooth_range
     else:
