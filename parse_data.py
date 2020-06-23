@@ -74,8 +74,6 @@ for i in raw:
             #print(j, (x-smooth_range + 1), y, i, new_cases[x][y], new_cases[x][:])
             # 1 5 ['2020-01-25', 'Illinois', '17', '1', '0'] 7 0
             if ((j > (smooth_range + 1)) and (x >= smooth_range)):
-                print('going in')
-
                 smooth_new_cases[x][y] = sum([int(new_cases[k][y]) for k in range (x-smooth_range + 1,x + 1)])/smooth_range
                 smooth_new_deaths[x][y] = sum([int(new_deaths[k][y]) for k in range (x-smooth_range + 1,x + 1)])/smooth_range
     else:
